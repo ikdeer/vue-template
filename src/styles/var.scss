@@ -1,0 +1,85 @@
+// 设置宽高
+@mixin wh($wid, $hei) {
+  @if $wid {
+	width: $wid;
+  }
+  @if $hei {
+	height: $hei;
+  }
+  overflow: hidden;
+}
+
+// 设置高度与行高一致
+@mixin lineH($index) {
+  height: $index;
+  line-height: $index;
+}
+
+// 父元素相对，子元素绝对
+@mixin absolut($index) {
+  position: relative;
+  &:after {
+	content: "";
+	position: absolute;
+	z-index: $index;
+  }
+}
+
+// 文本样式
+@mixin txts($fs, $cl) {
+  @if $fs {
+	font-size: $fs;
+  }
+  @if $cl {
+	color: $cl;
+  }
+}
+
+// 透明度设置
+@mixin op($index) {
+  opacity: $index;
+  filter: alpha(opacity=($index * 100));
+}
+
+// icon图标
+@mixin iCon($w, $h, $bg, $index) {
+  @include wh($w, $h);
+  @include bgImg($bg);
+  margin-right: $index;
+}
+
+// 变形
+@mixin transForm($index) {
+  -webkit-transform: $index;
+  -moz-transform: $index;
+  -ms-transform: $index;
+  transform: $index;
+}
+
+// 制作小箭头
+@mixin arrow($clr, $index) {
+  border-right: 1px solid $clr;
+  border-bottom: 1px solid $clr;
+  @include transForm(rotate($index));
+}
+
+// 圆角度
+@mixin radiu($index) {
+  -webkit-border-radius: $index;
+  -moz-border-radius: $index;
+  border-radius: $index;
+}
+
+// 盒阴影
+@mixin boxSd($shadow...) {
+  -webkit-box-shadow: $shadow;
+  -moz-box-shadow: $shadow;
+  -ms-box-shadow: $shadow;
+  box-shadow: $shadow;
+}
+
+// 常用内联块元素设置
+@mixin inlineB {
+  display: inline-block;
+  _display: inline;
+}
