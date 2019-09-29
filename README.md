@@ -1,4 +1,4 @@
-# lemon-vue
+# vue-template
 
 ## Project setup
 ```
