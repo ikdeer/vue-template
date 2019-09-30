@@ -22,7 +22,6 @@ export default {
   name: "tabBar",
   data() {
     return {
-      active: 0,
       tabBar: [
         {
           path: "/home",
@@ -51,24 +50,27 @@ export default {
       ]
     };
   },
-  mounted() {
-    this.tabActive(this.$route);
+  computed: {
+    active: {
+      get() {
+        if (this.$route.path == "/home") {
+          return 0;
+        }
+        if (this.$route.path == "/active") {
+          return 1;
+        }
+        if (this.$route.path == "/order") {
+          return 2;
+        }
+        if (this.$route.path == "/product") {
+          return 3;
+        }
+        return 0;
+      },
+      set() {}
+    }
   },
   methods: {
-    tabActive(to) {
-      if (to.path == "/home") {
-        this.active = 0;
-      }
-      if (to.path == "/active") {
-        this.active = 1;
-      }
-      if (to.path == "/order") {
-        this.active = 2;
-      }
-      if (to.path == "/product") {
-        this.active = 3;
-      }
-    },
     ClickTab(to) {
       if (to.path == this.$route.path) {
         return;

@@ -1,9 +1,17 @@
 import Vue from "vue";
 import Router from "vue-router";
 
+//对Router原型链上的push、replace方法进行重写,解决控制台看到未捕获的异常
+const originalPush = Router.prototype.push;
+Router.prototype.push = function push(location, onResolve, onReject) {
+  if (onResolve || onReject)
+    return originalPush.call(this, location, onResolve, onReject);
+  return originalPush.call(this, location).catch(err => err);
+};
+
 Vue.use(Router);
 
-export default new Router({
+const router = new Router({
   mode: "history",
   base: process.env.BASE_URL,
   routes: [
@@ -45,3 +53,15 @@ export default new Router({
     }
   ]
 });
+
+//导航守卫，路由鉴权
+router.beforeEach((to, from, next) => {
+  if (to.path == "/order") {
+    next({
+      path: "/home"
+    });
+  } else {
+    next();
+  }
+});
+export default router;
