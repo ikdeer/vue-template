@@ -48,8 +48,13 @@ const router = new Router({
       ]
     },
     {
+      path: "/notice",
+      name: "404",
+      component: () => import("./views/notice404.vue"),
+    },
+    {
       path: "*", //路由重定向
-      redirect: "/"
+      redirect: "/notice"
     }
   ]
 });
