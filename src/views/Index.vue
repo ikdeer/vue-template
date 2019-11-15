@@ -16,4 +16,10 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.Index {
+  width: 100%;
+  height: 100%;
+  background: #f6f7f9;
+}
+</style>

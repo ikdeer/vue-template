@@ -1,10 +1,15 @@
 import Vue from "vue";
 import App from "./App.vue";
-import router from "./router";
-import store from "./store";
+import router from "./router/router";
+import store from "./vuex/store";
 import Vant from "vant";
 import "vant/lib/index.css";
 import UI from "./components/index";
+
+//全局注册&挂载
+Vue.use(Vant);
+Vue.use(UI);
+Vue.config.productionTip = false;
 
 //750px下rem布局
 (function(doc) {
@@ -17,10 +22,6 @@ import UI from "./components/index";
   if (!doc.addEventListener) return;
   doc.addEventListener("DOMContentLoaded", recalc, false);
 })(document, window);
-
-Vue.use(Vant);
-Vue.use(UI);
-Vue.config.productionTip = false;
 
 new Vue({
   router,

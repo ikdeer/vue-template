@@ -1,12 +1,11 @@
 import axios from "axios";
-import { BASE_API_URL } from "./baseUrl";
 
 const AXIOS_INSTANCE = axios.create({
-  baseURL: BASE_API_URL
+  baseURL: process.env.VUE_APP_JIDAN_BASE_URL
 });
 
 AXIOS_INSTANCE.defaults.withCredentials = true;
-
+AXIOS_INSTANCE.defaults.headers.post["Content-Type"] = "application/json";
 // 请求拦截
 AXIOS_INSTANCE.interceptors.request.use(config => {
   return config;

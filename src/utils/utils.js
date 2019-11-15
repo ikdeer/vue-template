@@ -124,3 +124,31 @@ export const setUrlSearch = obj => {
   });
   return str;
 };
+
+/**
+ * 包含天
+ */
+export const formatDayTime = Times => {
+  let formatTimeObj = {
+    DD: "00",
+    HH: "00",
+    mm: "00",
+    ss: "00"
+  };
+  if (Times) {
+    let day = Math.floor(Times / (24 * 60 * 60));
+    let hour = Math.floor((Times - day * 24 * 3600) / 3600);
+    let minute = Math.floor((Times - day * 24 * 3600 - hour * 3600) / 60);
+    let second = Math.floor(
+      Times - day * 24 * 3600 - hour * 3600 - minute * 60
+    );
+    return {
+      DD: day < 10 ? "0" + day : day,
+      HH: hour < 10 ? "0" + hour : hour,
+      mm: minute < 10 ? "0" + minute : minute,
+      ss: second < 10 ? "0" + second : second
+    };
+  } else {
+    return formatTimeObj;
+  }
+};
